@@ -1,0 +1,49 @@
+# Maven / Java
+target/
+*.class
+*.log
+*.jar
+*.war
+!.mvn/wrapper/maven-wrapper.jar
+hs_err_pid*
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets and local configuration - NEVER commit
+.env
+*.env
+!.env.example
+application-local.yml
+application-local.properties
+*.pem
+*.key
+*.p12
+*.jks
+secrets/
+
+# Node / React
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+prediction-service/models/*.joblib
+
+# Docker volumes
+devops/data/
