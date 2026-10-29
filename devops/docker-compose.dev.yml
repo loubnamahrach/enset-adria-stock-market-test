@@ -1,0 +1,23 @@
+# Development PostgreSQL only. Credentials come from the (git-ignored) .env file.
+# Usage (from project root):
+#   docker compose --env-file .env -f devops/docker-compose.dev.yml up -d
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: stock-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?POSTGRES_USER is required}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+      POSTGRES_DB: stockdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - stock-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d stockdb"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  stock-pgdata:
